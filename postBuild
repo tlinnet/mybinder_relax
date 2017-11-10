@@ -8,3 +8,12 @@
 
 # Notebooks w/ extensions that auto-run code must be "trusted" to work the first time
 jupyter trust CPMG_NMR_relax_interactive.ipynb
+
+# relax
+mkdir -p $HOME/software
+cd $HOME/software
+git clone https://github.com/nmr-relax/relax.git relax
+cd $HOME/software/relax
+git pull
+scons
+./relax -i 
