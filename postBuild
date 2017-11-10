@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# JupyterLab + Binder: Demonstrating how to get JupyterLab working with Binder 
+# https://github.com/binder-examples/jupyterlab
+# Widgets. Should already be enabled ?
+#jupyter labextension install @jupyter-widgets/jupyterlab-manager
+#jupyter nbextension enable --py widgetsnbextension --sys-prefix
+
+# Notebooks w/ extensions that auto-run code must be "trusted" to work the first time
+jupyter trust CPMG_NMR_relax_interactive.ipynb
+
 # Get relax
 mkdir -p $HOME/software
 cd $HOME/software
@@ -8,16 +17,4 @@ cd $HOME/software/relax
 git pull
 scons
 ./relax -i
-mkdir -p $HOME/bin
-ln -s $HOME/software/relax/relax $HOME/bin/relax
-PATH="$HOME/bin:${PATH}"
-
-
-# JupyterLab + Binder: Demonstrating how to get JupyterLab working with Binder 
-# https://github.com/binder-examples/jupyterlab
-# Widgets. Should already be enabled ?
-#jupyter labextension install @jupyter-widgets/jupyterlab-manager
-#jupyter nbextension enable --py widgetsnbextension --sys-prefix
-
-# Notebooks w/ extensions that auto-run code must be "trusted" to work the first time
-#jupyter trust CPMG_NMR_relax_interactive.ipynb 
+ln -s $HOME/software/relax/relax /srv/venv/bin/relax
