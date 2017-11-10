@@ -5,3 +5,4 @@ unzip
 subversion
 git
 grace
+scons
