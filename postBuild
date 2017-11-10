@@ -8,8 +8,9 @@ cd $HOME/software/relax
 git pull
 scons
 ./relax -i
-ln -s $HOME/software/relax/relax /usr/local/bin/relax
-
+mkdir -p $HOME/bin
+ln -s $HOME/software/relax/relax $HOME/bin/relax
+PATH="$HOME/bin:${PATH}"
 
 
 # JupyterLab + Binder: Demonstrating how to get JupyterLab working with Binder 
