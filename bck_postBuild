@@ -1,8 +1,0 @@
-#!/bin/bash
-
-# Widgets
-jupyter labextension install @jupyter-widgets/jupyterlab-manager
-jupyter nbextension enable --py widgetsnbextension --sys-prefix
-
-# Notebooks w/ extensions that auto-run code must be "trusted" to work the first time
-jupyter trust CPMG_NMR_relax_interactive.ipynb
