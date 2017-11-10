@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Install kernels
-#ipython2 kernel install
-#ipython3 kernel install
+ipython2 kernel install
+ipython3 kernel install
 
 # Widgets
 jupyter labextension install @jupyter-widgets/jupyterlab-manager

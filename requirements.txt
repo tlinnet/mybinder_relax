@@ -6,4 +6,4 @@ seaborn
 jupyter
 jupyterlab
 ipykernel
-ipywidgets
+ipywidgets==6.0.0
