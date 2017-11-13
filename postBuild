@@ -7,7 +7,7 @@
 jupyter nbextension enable --py widgetsnbextension
 
 # Notebooks w/ extensions that auto-run code must be "trusted" to work the first time
-jupyter trust CPMG_NMR_relax_interactive.ipynb
+jupyter trust CPMG_NMR_relax_interactive.ipynb plot_sin.ipynb CPMG_tcp.ipynb
 
 # Get relax
 mkdir -p $HOME/software
