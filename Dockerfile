@@ -43,4 +43,4 @@ RUN echo "" && \
     jupyter nbextension enable --py ipyvolume
     
 # Sign
-RUN for f in *.ipynb && \ do && \ jupyter trust $f && \ done
+RUN for f in *.ipynb; do jupyter trust $f; done
