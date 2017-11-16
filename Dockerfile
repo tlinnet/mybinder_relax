@@ -44,3 +44,14 @@ RUN echo "" && \
     
 # Sign
 RUN for f in *.ipynb; do jupyter trust $f; done
+
+# Get relax
+# http://www.nmr-relax.com
+RUN cd $HOME && \
+    mkdir -p $HOME/software && \
+    cd $HOME/software && \
+    git clone --depth 1 https://github.com/nmr-relax/relax.git relax && \
+    cd $HOME/software/relax && \
+    scons && \
+    ./relax -i && \
+    ln -s $HOME/software/relax/relax /opt/conda/bin/relax
