@@ -5,14 +5,8 @@ ENV NB_USER jovyan
 ENV NB_UID 1000
 ENV HOME /home/${NB_USER}
 
-# Make sure the contents of our repo are in ${HOME}
-COPY Dockerfile ${HOME}
-COPY *.ipynb ${HOME}/
-COPY images ${HOME}/images
-
 # Set root
 USER root
-RUN chown -R ${NB_UID} ${HOME}
 
 # Get packages
 ENV BUILD_PACKAGES="lynx curl wget unzip subversion git"
@@ -43,9 +37,6 @@ RUN echo "" && \
 #RUN echo "" && \
 #    jupyter nbextension enable --py bqplot && \
 #    jupyter nbextension enable --py ipyvolume
-    
-# Sign
-RUN for f in *.ipynb; do jupyter trust $f; done
 
 # Get relax
 # http://www.nmr-relax.com
@@ -53,9 +44,24 @@ RUN cd $HOME && \
     mkdir -p $HOME/software && \
     cd $HOME/software && \
     git clone --depth 1 https://github.com/nmr-relax/relax.git relax && \
-    cd $HOME/software/relax && \
-    scons -v && \
-    scons && \
-    ./relax -i && \
-    ln -s $HOME/software/relax/relax /opt/conda/bin/relax
+    cd $HOME/software/relax
+    #scons -v  && \
+    # scons && \
+    #./relax -i && \
+    #ln -s $HOME/software/relax/relax /opt/conda/bin/relax
+
+# Make sure the contents of our repo are in ${HOME}
+COPY Dockerfile ${HOME}
+COPY *.ipynb ${HOME}/
+COPY images ${HOME}/images
+
+# Sign
+RUN for f in *.ipynb; do jupyter trust $f; done
+
+# Set root
+USER root
+RUN chown -R ${NB_UID} ${HOME}
+
+# Set user back
+USER ${NB_USER}
     
