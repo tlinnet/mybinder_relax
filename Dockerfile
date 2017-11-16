@@ -28,19 +28,21 @@ RUN apt-get update && \
 USER ${NB_USER}
 
 # Install additional python packages
-ENV PIP_PACKAGES="bqplot ipyvolume"
+ENV CONDA_PACKAGES="bqplot vaex ipyvolume"
+ENV PIP_PACKAGES=""
 ENV PIP_PACKAGES="$PIP_PACKAGES https://iweb.dl.sourceforge.net/project/minfx/1.0.12/minfx-1.0.12.tar.gz"
 ENV PIP_PACKAGES="$PIP_PACKAGES https://iweb.dl.sourceforge.net/project/bmrblib/1.0.4/bmrblib-1.0.4.tar.gz"
 ENV PIP_PACKAGES="$PIP_PACKAGES https://github.com/jjhelmus/nmrglue/releases/download/v0.6/nmrglue-0.6.tar.gz"
 
 # Install packages
 RUN echo "" && \
-    pip install $PIP_PACKAGES
+    pip install $PIP_PACKAGES && \
+    conda install -c conda-forge $CONDA_PACKAGES
 
 # Enable
-RUN echo "" && \
-    jupyter nbextension enable --py bqplot && \
-    jupyter nbextension enable --py ipyvolume
+#RUN echo "" && \
+#    jupyter nbextension enable --py bqplot && \
+#    jupyter nbextension enable --py ipyvolume
     
 # Sign
 RUN for f in *.ipynb; do jupyter trust $f; done
