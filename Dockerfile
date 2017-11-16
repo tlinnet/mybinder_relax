@@ -38,6 +38,12 @@ RUN echo "" && \
 #    jupyter nbextension enable --py bqplot && \
 #    jupyter nbextension enable --py ipyvolume
 
+# jupyter notebook password remove
+RUN echo "" && \
+    mkdir -p $HOME/.jupyter && \
+    cd $HOME/.jupyter && \
+    echo "c.NotebookApp.token = u''" > jupyter_notebook_config.py
+
 # Get relax
 # http://www.nmr-relax.com
 RUN cd $HOME && \
