@@ -8,7 +8,7 @@ ENV HOME /home/${NB_USER}
 # Make sure the contents of our repo are in ${HOME}
 COPY Dockerfile ${HOME}
 COPY *.ipynb ${HOME}/
-COPY images ${HOME}/
+COPY images ${HOME}/images
 
 # Set root
 USER root
@@ -24,6 +24,9 @@ RUN apt-get update && \
     apt-get install --no-install-recommends -y $BUILD_PACKAGES && \
     rm -rf /var/lib/apt/lists/*
 
+# Set user back
+USER ${NB_USER}
+
 # Install additional python packages
 ENV PIP_PACKAGES="bqplot ipyvolume"
 ENV PIP_PACKAGES="$PIP_PACKAGES https://iweb.dl.sourceforge.net/project/minfx/1.0.12/minfx-1.0.12.tar.gz"
@@ -36,8 +39,8 @@ RUN echo "" && \
 
 # Enable
 RUN echo "" && \
-    jupyter nbextension enable --py bqplot --sys-prefix && \
-    jupyter nbextension enable --py ipyvolume --sys-prefix
-
-# Set user back
-USER ${NB_USER}
+    jupyter nbextension enable --py bqplot && \
+    jupyter nbextension enable --py ipyvolume
+    
+# Sign
+RUN for f in *.ipynb && \ do && \ jupyter trust $f && \ done
