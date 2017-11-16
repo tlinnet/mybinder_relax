@@ -28,7 +28,7 @@ RUN apt-get update && \
 USER ${NB_USER}
 
 # Install additional python packages
-ENV CONDA_PACKAGES="bqplot vaex ipyvolume"
+ENV CONDA_PACKAGES="bqplot vaex ipyvolume scons"
 ENV PIP_PACKAGES=""
 ENV PIP_PACKAGES="$PIP_PACKAGES https://iweb.dl.sourceforge.net/project/minfx/1.0.12/minfx-1.0.12.tar.gz"
 ENV PIP_PACKAGES="$PIP_PACKAGES https://iweb.dl.sourceforge.net/project/bmrblib/1.0.4/bmrblib-1.0.4.tar.gz"
@@ -53,7 +53,8 @@ RUN cd $HOME && \
     mkdir -p $HOME/software && \
     cd $HOME/software && \
     git clone --depth 1 https://github.com/nmr-relax/relax.git relax && \
-    cd $HOME/software/relax
-    #scons && \
-    #./relax -i && \
-    #ln -s $HOME/software/relax/relax /opt/conda/bin/relax
+    cd $HOME/software/relax && \
+    scons -v && \
+    scons && \
+    ./relax -i && \
+    ln -s $HOME/software/relax/relax /opt/conda/bin/relax
