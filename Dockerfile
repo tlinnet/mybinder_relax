@@ -54,7 +54,7 @@ RUN cd $HOME && \
     cd $HOME/software && \
     git clone --depth 1 https://github.com/nmr-relax/relax.git relax && \
     cd $HOME/software/relax && \
-    scons -v 
+    scons -v && \
     scons && \
     ./relax -i && \
     ln -s $HOME/software/relax/relax /opt/conda/bin/relax
