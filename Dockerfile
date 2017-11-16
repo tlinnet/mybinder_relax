@@ -28,8 +28,8 @@ RUN apt-get update && \
 USER ${NB_USER}
 
 # Install additional python packages
-ENV CONDA_PACKAGES="bqplot vaex ipyvolume scons"
-ENV PIP_PACKAGES=""
+ENV CONDA_PACKAGES="bqplot vaex ipyvolume"
+ENV PIP_PACKAGES="scons"
 ENV PIP_PACKAGES="$PIP_PACKAGES https://iweb.dl.sourceforge.net/project/minfx/1.0.12/minfx-1.0.12.tar.gz"
 ENV PIP_PACKAGES="$PIP_PACKAGES https://iweb.dl.sourceforge.net/project/bmrblib/1.0.4/bmrblib-1.0.4.tar.gz"
 ENV PIP_PACKAGES="$PIP_PACKAGES https://github.com/jjhelmus/nmrglue/releases/download/v0.6/nmrglue-0.6.tar.gz"
