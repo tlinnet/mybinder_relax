@@ -22,6 +22,7 @@ RUN apt-get update && \
 USER ${NB_USER}
 
 # Install additional python packages
+ENV ANACONDA_PACKAGES="ipywidgets"
 ENV CONDA_PACKAGES="bqplot vaex ipyvolume"
 ENV PIP_PACKAGES="scons"
 ENV PIP_PACKAGES="$PIP_PACKAGES https://iweb.dl.sourceforge.net/project/minfx/1.0.12/minfx-1.0.12.tar.gz"
@@ -30,8 +31,10 @@ ENV PIP_PACKAGES="$PIP_PACKAGES https://github.com/jjhelmus/nmrglue/releases/dow
 
 # Install packages
 RUN echo "" && \
-    pip install $PIP_PACKAGES && \
-    conda install -c conda-forge $CONDA_PACKAGES
+    conda install -c anaconda $ANACONDA_PACKAGES && \
+    conda install -c conda-forge $CONDA_PACKAGES && \
+    pip install $PIP_PACKAGES
+
 
 # jupyter notebook password remove
 RUN echo "" && \
