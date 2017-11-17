@@ -57,10 +57,11 @@ RUN cd $HOME && \
 
 # Make sure the contents of our repo are in ${HOME}
 COPY Dockerfile ${HOME}
-COPY *.ipynb ${HOME}
+COPY *.ipynb ${HOME}/
 COPY images ${HOME}/images
 
 # Sign Notebooks
+#WORKDIR /home/jovyan/work
 RUN for f in *.ipynb; do jupyter trust $f; done
 
 ## Set root, and make folder writable
