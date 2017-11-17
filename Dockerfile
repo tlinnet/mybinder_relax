@@ -56,12 +56,11 @@ RUN cd $HOME && \
     ln -s $HOME/software/relax/relax /opt/conda/bin/relax
 
 # Make sure the contents of our repo are in ${HOME}
-COPY Dockerfile ${HOME}/work
-COPY *.ipynb ${HOME}/work/
-COPY images ${HOME}/work/images
+COPY Dockerfile ${HOME}
+COPY *.ipynb ${HOME}
+COPY images ${HOME}/images
 
 # Sign Notebooks
-WORKDIR /home/jovyan/work
 RUN for f in *.ipynb; do jupyter trust $f; done
 
 ## Set root, and make folder writable
