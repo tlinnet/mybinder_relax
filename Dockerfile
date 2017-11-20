@@ -35,7 +35,6 @@ RUN echo "" && \
     conda install -c conda-forge $CONDA_PACKAGES && \
     pip install $PIP_PACKAGES
 
-
 # jupyter notebook password remove
 RUN echo "" && \
     mkdir -p $HOME/.jupyter && \
@@ -50,10 +49,6 @@ RUN cd $HOME && \
     cd $HOME/software && \
     git clone --depth 1 https://github.com/nmr-relax/relax.git relax && \
     cd $HOME/software/relax && \
-    sed -i -e 's/+ `temp_extns`//g' sconstruct && \
-    sed -i -e 's/+ `sys.version_info\[0\]`//g' sconstruct && \
-    sed -i -e 's/+ `sys.version_info\[1\]`//g' sconstruct && \
-    sed -i -e 's/+ `str(self.relax_fit_object\[0\])`//g' sconstruct && \
     scons && \
     ./relax -i && \
     ln -s $HOME/software/relax/relax /opt/conda/bin/relax
