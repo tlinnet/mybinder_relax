@@ -9,7 +9,7 @@ ENV HOME /home/${NB_USER}
 USER root
 
 # Get packages
-ENV BUILD_PACKAGES="lynx curl wget unzip subversion git"
+ENV BUILD_PACKAGES="curl wget unzip subversion git"
 ENV BUILD_PACKAGES="$BUILD_PACKAGES grace scons"
 
 # Install. # Install all packages in 1 RUN
@@ -22,8 +22,12 @@ RUN apt-get update && \
 USER ${NB_USER}
 
 # Install additional python packages
-ENV ANACONDA_PACKAGES="ipywidgets"
-ENV CONDA_PACKAGES="bqplot"
+#ENV ANACONDA_PACKAGES="ipywidgets"
+#conda install -c anaconda $ANACONDA_PACKAGES && \
+
+#ENV CONDA_PACKAGES="bqplot"
+#conda install -c conda-forge $CONDA_PACKAGES && \
+
 ENV PIP_PACKAGES="scons"
 ENV PIP_PACKAGES="$PIP_PACKAGES https://iweb.dl.sourceforge.net/project/minfx/1.0.12/minfx-1.0.12.tar.gz"
 ENV PIP_PACKAGES="$PIP_PACKAGES https://iweb.dl.sourceforge.net/project/bmrblib/1.0.4/bmrblib-1.0.4.tar.gz"
@@ -31,11 +35,7 @@ ENV PIP_PACKAGES="$PIP_PACKAGES https://github.com/jjhelmus/nmrglue/releases/dow
 
 # Install packages
 RUN echo "" && \
-    conda install -c anaconda $ANACONDA_PACKAGES && \
-    conda install -c conda-forge $CONDA_PACKAGES && \
-    pip install $PIP_PACKAGES && \
-    jupyter labextension install @jupyter-widgets/jupyterlab-manager && \
-    jupyter labextension install bqplot-jupyterlab
+    pip install $PIP_PACKAGES
 
 # jupyter notebook password remove
 RUN echo "" && \
