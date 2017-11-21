@@ -34,7 +34,8 @@ RUN echo "" && \
     conda install -c anaconda $ANACONDA_PACKAGES && \
     conda install -c conda-forge $CONDA_PACKAGES && \
     pip install $PIP_PACKAGES && \
-    jupyter labextension install @jupyter-widgets/jupyterlab-manager
+    jupyter labextension install @jupyter-widgets/jupyterlab-manager && \
+    jupyter labextension install bqplot-jupyterlab
 
 # jupyter notebook password remove
 RUN echo "" && \
