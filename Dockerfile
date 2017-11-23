@@ -33,9 +33,12 @@ ENV PIP_PACKAGES="$PIP_PACKAGES https://iweb.dl.sourceforge.net/project/minfx/1.
 ENV PIP_PACKAGES="$PIP_PACKAGES https://iweb.dl.sourceforge.net/project/bmrblib/1.0.4/bmrblib-1.0.4.tar.gz"
 #pip install $PIP_PACKAGES
 
+# RISE: Quickly turn your Jupyter Notebooks into a live presentation.
+
 # Install packages
 RUN echo "" && \
-    pip install $PIP_PACKAGES
+    pip install $PIP_PACKAGES && \
+    conda install -c damianavila82 rise
 
 # jupyter notebook password remove
 RUN echo "" && \
