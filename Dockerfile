@@ -1,4 +1,6 @@
-FROM jupyter/scipy-notebook:7fd175ec22c7
+# See latest tag at: https://hub.docker.com/r/jupyter/scipy-notebook/
+# Reference with: https://github.com/jupyter/docker-stacks/commits/master
+FROM jupyter/scipy-notebook:033056e6d164
 
 # Set variables    
 ENV NB_USER jovyan
@@ -28,7 +30,7 @@ USER ${NB_USER}
 #ENV CONDA_PACKAGES=""
 #conda install -c conda-forge $CONDA_PACKAGES && \
 
-ENV PIP_PACKAGES="scons nmrglue plotly"
+ENV PIP_PACKAGES="scons nmrglue"
 ENV PIP_PACKAGES="$PIP_PACKAGES https://iweb.dl.sourceforge.net/project/minfx/1.0.12/minfx-1.0.12.tar.gz"
 ENV PIP_PACKAGES="$PIP_PACKAGES https://iweb.dl.sourceforge.net/project/bmrblib/1.0.4/bmrblib-1.0.4.tar.gz"
 #pip install $PIP_PACKAGES
