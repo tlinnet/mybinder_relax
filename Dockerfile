@@ -36,11 +36,13 @@ ENV PIP_PACKAGES="$PIP_PACKAGES https://iweb.dl.sourceforge.net/project/bmrblib/
 #pip install $PIP_PACKAGES
 
 # RISE: Quickly turn your Jupyter Notebooks into a live presentation.
+# datashader: creating meaningful representations of large amounts of data.
 
 # Install packages
 RUN echo "" && \
     pip install $PIP_PACKAGES && \
-    conda install -c damianavila82 rise
+    conda install -c damianavila82 rise && \
+    conda install -c bokeh datashader
 
 # jupyter notebook password remove
 RUN echo "" && \
